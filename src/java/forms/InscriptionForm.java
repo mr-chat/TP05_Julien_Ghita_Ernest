@@ -12,6 +12,7 @@ package forms;
 import dao.DAO;
 import dao.DAOFactory;
 import beans.Utilisateur;
+import dao.UtilisateurDAO;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -101,9 +102,10 @@ public final class InscriptionForm {
      */
     private void validationNom(String nom) throws Exception {
         DAO<Utilisateur> utilisateur = DAOFactory.getUtilisateurDAO();
+        Utilisateur utilisateurEnCours = ((UtilisateurDAO) utilisateur).findByName(nom);
         if (nom != null && nom.length() < 2) {
             throw new Exception("Le nom d'utilisateur doit contenir au moins 2 caractères.");
-        } else if (utilisateur.findByName(nom) != null) {
+        } else if (utilisateurEnCours != null) {
             throw new Exception("Ce nom d'utilisateur existe déjà");
         }
     }

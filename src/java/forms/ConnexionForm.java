@@ -7,6 +7,7 @@ package forms;
 
 import dao.DAO;
 import dao.DAOFactory;
+import dao.UtilisateurDAO;
 import beans.Utilisateur;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +58,7 @@ public class ConnexionForm {
      */
     private Utilisateur validationIdentifiants(String nom, String motDePasse) throws Exception {
         DAO<Utilisateur> utilisateur = DAOFactory.getUtilisateurDAO();
-        Utilisateur utilisateurEnCours = utilisateur.findByName(nom);
+        Utilisateur utilisateurEnCours = ((UtilisateurDAO) utilisateur).findByName(nom);
         if (nom == null) {
             throw new Exception("Merci de saisir votre nom d'utilisateur.");
         } else if (utilisateurEnCours == null) {
