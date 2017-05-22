@@ -14,7 +14,7 @@ public class Utilisateur {
     private String email;
     private Long id;
     private String nom;
-    private String mot_de_passe;
+    private String motDePasse;
 
     public Long getId() {
         return id;
@@ -32,12 +32,12 @@ public class Utilisateur {
         this.nom = nom;
     }
 
-    public String getMot_de_passe() {
-        return mot_de_passe;
+    public String getmotDePasse() {
+        return motDePasse;
     }
 
-    public void setMot_de_passe(String mot_de_passe) {
-        this.mot_de_passe = mot_de_passe;
+    public void setmotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 
     public String getEmail() {
