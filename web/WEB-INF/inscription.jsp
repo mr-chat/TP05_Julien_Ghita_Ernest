@@ -20,12 +20,12 @@
 
                 <label for="email">Adresse email <span class="requis">*</span></label>
                 <input type="text" id="email" name="email" value="<c:out value="${requestScope.utilisateur.email}"/>" size="20" maxlength="60" />
-                <span class="erreur">${requestScope.form.erreurs.email}</span>
+                <span class="erreur">${requestScope.form.erreurs["email"]}</span>
                 <br />
 
                 <label for="motdepasse">Mot de passe <span class="requis">*</span></label>
                 <input type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
-                <span class="erreur">${requestScope.form.erreurs.motdepasse}</span>
+                <span class="erreur">${requestScope.form.erreurs["motdepasse"]}</span>
                 <br />
 
                 <label for="confirmation">Confirmation <span class="requis">*</span></label>
@@ -34,7 +34,7 @@
 
                 <label for="nom">Nom d'utilisateur</label>
                 <input type="text" id="nom" name="nom" value="<c:out value="${requestScope.utilisateur.nom}"/>" size="20" maxlength="20" />
-                <span class="erreur">${requestScope.form.erreurs.nom}</span>
+                <span class="erreur">${requestScope.form.erreurs["nom"]}</span>
                 <br />
 
                 <input type="submit" value="Inscription" class="sansLabel" />

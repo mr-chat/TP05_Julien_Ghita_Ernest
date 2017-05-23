@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class UtilisateurDAO extends DAO<Utilisateur> {
 
-    private final String TABLE = "Utilisateur";
+    private final String TABLE = "utilisateurs";
 
     @Override
     public Utilisateur find(Long id) {
@@ -86,6 +86,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     @Override
     public Utilisateur create(Utilisateur obj) {
         try {
+
             String req = "INSERT INTO " + TABLE + " (nom,email,motDePasse) VALUES(?,?,?)";
 //            System.out.println("requête : " + req); // Debug
             PreparedStatement pstmt = this.connection.prepareStatement(req,

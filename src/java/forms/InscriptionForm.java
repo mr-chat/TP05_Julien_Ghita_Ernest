@@ -63,6 +63,9 @@ public final class InscriptionForm {
         }
         utilisateur.setNom(nom);
         if (erreurs.isEmpty()) {
+            // creation de l'utilisateur dans la table
+            DAO<Utilisateur> inscrit = DAOFactory.getUtilisateurDAO();
+            inscrit.create(utilisateur);
             resultat = "Succès de l'inscription.";
 
         } else {
@@ -74,14 +77,17 @@ public final class InscriptionForm {
     private void validationEmail(String email) throws Exception {
         if (email != null) {
             if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
-                throw new Exception("Merci de saisir une adresse mail valide."
-                );
+                throw new Exception("Merci de saisir une adresse mail valide.");
             }
         } else {
             throw new Exception("Merci de saisir une adresse mail.");
         }
     }
 
+    /*
+    * Vérification du mdp et de la vérification du mdp (cohérence entre les deux), présence d'un mot de passe
+    *
+     */
     private void validationMotsDePasse(String motDePasse, String confirmation
     ) throws Exception {
         if (motDePasse != null && confirmation != null) {
@@ -97,15 +103,17 @@ public final class InscriptionForm {
 
     /*
     *
-    * Vérifie si le nom d'utilisateur existe déjà
+    * Vérifie si le nom d'utilisateur est supérieur à 2 caractères et si il existe déjà
     *
      */
     private void validationNom(String nom) throws Exception {
         DAO<Utilisateur> utilisateur = DAOFactory.getUtilisateurDAO();
         Utilisateur utilisateurEnCours = ((UtilisateurDAO) utilisateur).findByName(nom);
+        System.out.println(nom);
         if (nom != null && nom.length() < 2) {
             throw new Exception("Le nom d'utilisateur doit contenir au moins 2 caractères.");
-        } else if (utilisateurEnCours != null) {
+        }
+        if (utilisateurEnCours != null) {
             throw new Exception("Ce nom d'utilisateur existe déjà");
         }
     }

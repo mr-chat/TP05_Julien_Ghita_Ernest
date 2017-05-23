@@ -47,6 +47,11 @@ public class MySQLConnection {
     public static Connection getInstance() {
         if (connection == null) {
             try {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
             } catch (SQLException ex) {
                 Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE,

@@ -54,10 +54,16 @@ public class ConnexionForm {
     }
 
     /**
-     * Valide le combo nom/motdepasse et retourne l'utilisateur connecté
+     * Valide le combo nom/motdepasse et retourne l'utilisateur connecté Erreur
+     * si pas d'utilisateur sasi, erreur si utilisateur non présent dans la
+     * base, erreur si mdp incorrect /!\ spécifier que le nom d'utilisateur est
+     * correct mais pas le mot de passe n'est pas une bonne pratique de
+     * sécurité, c'est ici pour la beauté de la vérification
      */
     private Utilisateur validationIdentifiants(String nom, String motDePasse) throws Exception {
         DAO<Utilisateur> utilisateur = DAOFactory.getUtilisateurDAO();
+        // cast du DAO typé en utilisateurDAO pour utiliser findByName qui n'est 
+        // pas présent dans la classe DAO<T>
         Utilisateur utilisateurEnCours = ((UtilisateurDAO) utilisateur).findByName(nom);
         if (nom == null) {
             throw new Exception("Merci de saisir votre nom d'utilisateur.");
