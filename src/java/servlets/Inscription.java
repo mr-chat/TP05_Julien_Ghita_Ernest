@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Inscription extends HttpServlet {
 
@@ -39,6 +40,14 @@ public class Inscription extends HttpServlet {
          */
         //inscrireUtilisateur est la methode d'InscriptionForm qui fait tout le boulot
         Utilisateur utilisateur = form.inscrireUtilisateur(request);
+
+        //si l’inscription est valide, l’utilisateur doit être immédiatement connecté.
+        HttpSession session = request.getSession();
+        if (form.getErreurs().isEmpty()) {
+            session.setAttribute(ATT_USER, utilisateur);
+        } else {
+            session.setAttribute(ATT_FORM, null);
+        }
 
         /* Stockage du formulaire et du bean dans l'objet request */
         request.setAttribute(ATT_FORM, form);

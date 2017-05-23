@@ -4,7 +4,6 @@
     Author     : Herbert
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,6 +40,7 @@
 
                 <p>Les champs marqués d'un <span class="requis">*</span> sont obligatoires.</p>
                 <p class="${(empty requestScope.form.erreurs) ? 'succes' : 'erreur'}">${requestScope.form.resultat}</p>
+                
             </fieldset>
         </form>
     </body>

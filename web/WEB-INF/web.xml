@@ -30,4 +30,15 @@
             30
         </session-timeout>
     </session-config>
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <include-prelude>/WEB-INF/jspHeadersInclude.jsp</include-prelude>
+            <include-prelude>/WEB-INF/menu.jsp</include-prelude>
+        </jsp-property-group>
+    </jsp-config>
+    
+    <welcome-file-list>
+        <welcome-file>connexion</welcome-file>
+    </welcome-file-list>
 </web-app>
